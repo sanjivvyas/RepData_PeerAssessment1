@@ -54,6 +54,45 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h1 class="title">Reproducible Research: Peer Assessment 1</h1>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#loading-and-preprocessing-the-data">Loading and preprocessing the data</a></li>
+<li><a href="#read-in-the-data.">Read in the data.</a></li>
+<li><a href="#format-date-column-in-date-type">Format date column in date type</a></li>
+<li><a href="#create-dataframe-with-total-steps-per-day">Create dataframe with total steps per day</a></li>
+<li><a href="#create-dataframe-with-total-steps-per-interval">Create dataframe with total steps per interval</a></li>
+<li><a href="#what-is-mean-total-number-of-steps-taken-per-day">What is mean total number of steps taken per day?</a></li>
+<li><a href="#create-dataframe-with-mean-steps-per-interval">create dataframe with mean steps per interval</a></li>
+<li><a href="#make-a-histogram-of-the-total-number-of-steps-taken-each-day">1.Make a histogram of the total number of steps taken each day</a></li>
+<li><a href="#calculate-and-report-the-mean-and-median-total-number-of-steps-taken-per-day">2.Calculate and report the mean and median total number of steps taken per day</a><ul>
+<li><a href="#what-is-the-average-daily-activity-pattern">What is the average daily activity pattern?</a></li>
+</ul></li>
+<li><a href="#make-a-time-series-plot-i.e.type-l-of-the-5-minute-interval-x-axis-and-the-average-number-of-steps-taken-averaged-across-all-days-y-axis">1.Make a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)</a></li>
+<li><a href="#which-five-minute-interval-has-the-highest-mean-number-of-steps">Which five minute interval has the highest mean number of steps?</a><ul>
+<li><a href="#imputing-missing-values">Imputing missing values</a></li>
+</ul></li>
+<li><a href="#total-number-of-missing-values-in-the-dataset">Total number of missing values in the dataset:</a></li>
+<li><a href="#devise-a-strategy-for-filling-in-all-of-the-missing-values-in-the-dataset.">2.Devise a strategy for filling in all of the missing values in the dataset.</a><ul>
+<li><a href="#my-strategy-is-to-replace-the-missing-values-with-mean.">My strategy is to replace the missing values with mean.</a></li>
+</ul></li>
+<li><a href="#so-i-will-merge-dataframe-and-dataframe.mean.interval-dataframes">So I will merge dataframe and dataframe.mean.interval dataframes</a></li>
+<li><a href="#resulting-set-is-sorted-by-date-and-interval">Resulting set is sorted by date and interval</a></li>
+<li><a href="#number-of-steps-now-has-fractions-due-to-replaced-missing-values-with-mean">Number of steps now has fractions due to replaced missing values with mean</a></li>
+<li><a href="#rounding-off-the-values-to-avoid-fractions">Rounding off the values to avoid fractions</a><ul>
+<li><a href="#creating-new-data-set">Creating new data set</a></li>
+<li><a href="#histogram-of-total-number-of-steps">Histogram of total number of steps</a></li>
+</ul></li>
+<li><a href="#make-a-histogram-of-the-total-number-of-steps-taken-each-day-and-calculate-and-report-the-mean-and-median-total-number-of-steps-taken-per-day.">Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day.</a></li>
+<li><a href="#create-dataframe-with-total-steps-per-day-different-from-before-since-this-has-na-replaced-with-mean-steps-per-interval">Create dataframe with total steps per day different from before since this has NA replaced with mean steps per interval</a></li>
+<li><a href="#histogram-of-the-total-number-of-steps-taken-each-day">Histogram of the total number of steps taken each day</a></li>
+<li><a href="#median-number-of-steps-per-day">Median number of steps per day:</a></li>
+<li><a href="#the-values-differ.-the-mean-is-equal-to-the-estimates-from-the-first-part-of-the-assignment.">The values differ. The Mean is equal to the estimates from the first part of the assignment.</a></li>
+<li><a href="#whereas-the-median-is-slightly-lower-when-compared-to-the-first-part-of-the-assignment.">Whereas, the Median is slightly lower when compared to the first part of the assignment.</a></li>
+<li><a href="#the-histogram-has-similar-shape-except-the-frequencies-have-gone-up-as-missing-values-are-replaced.-below-is-side-by-side-illustration.">The histogram has similar shape except the frequencies have gone up as missing values are replaced. Below is side by side illustration.</a></li>
+<li><a href="#create-a-factor-with-the-names-of-the-days-for-all-dates">create a factor with the names of the days for all dates</a></li>
+<li><a href="#make-a-panel-plot-containing-a-time-series-plot-i.e.type-l-of-the-5-minute-interval-vs.the-average-number-of-steps-taken-averaged-across-all-weekday-days-or-weekend-days.">Make a panel plot containing a time series plot (i.e. type = “l”) of the 5-minute interval vs. the average number of steps taken, averaged across all weekday days or weekend days.</a></li>
+</ul>
+</div>
 
 <p>opts_chunk$set(echo=TRUE, results=‘asis’)</p>
 <div id="loading-and-preprocessing-the-data" class="section level1">
@@ -130,11 +169,14 @@ lines(dataframe.mean.interval$interval, dataframe.mean.interval$mean.steps, type
 <pre class="r"><code>sum(is.na(dataframe$steps))</code></pre>
 <pre><code>## [1] 2304</code></pre>
 </div>
-<div id="devise-a-strategy-for-filling-in-all-of-the-missing-values-in-the-dataset.-replacing-missing-values-with-mean." class="section level1">
-<h1>2.Devise a strategy for filling in all of the missing values in the dataset. Replacing missing values with mean.</h1>
+<div id="devise-a-strategy-for-filling-in-all-of-the-missing-values-in-the-dataset." class="section level1">
+<h1>2.Devise a strategy for filling in all of the missing values in the dataset.</h1>
+<div id="my-strategy-is-to-replace-the-missing-values-with-mean." class="section level2">
+<h2>My strategy is to replace the missing values with mean.</h2>
 </div>
-<div id="merge-dataframe-and-dataframe.mean.interval-dataframes" class="section level1">
-<h1>Merge dataframe and dataframe.mean.interval dataframes</h1>
+</div>
+<div id="so-i-will-merge-dataframe-and-dataframe.mean.interval-dataframes" class="section level1">
+<h1>So I will merge dataframe and dataframe.mean.interval dataframes</h1>
 </div>
 <div id="resulting-set-is-sorted-by-date-and-interval" class="section level1">
 <h1>Resulting set is sorted by date and interval</h1>

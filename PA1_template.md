@@ -1,7 +1,7 @@
 # Reproducible Research: Peer Assessment 1
 opts_chunk$set(echo=TRUE, results='asis')
 
-#Loading and preprocessing the data
+# Loading and preprocessing the data
 # Read in the data.
 
 ```r
@@ -95,8 +95,9 @@ sum(is.na(dataframe$steps))
 ```
 ## [1] 2304
 ```
-# 2.Devise a strategy for filling in all of the missing values in the dataset. Replacing missing values with mean.
-# Merge dataframe and dataframe.mean.interval dataframes
+# 2.Devise a strategy for filling in all of the missing values in the dataset. 
+## My strategy is to replace the missing values with mean.
+# So I will merge dataframe and dataframe.mean.interval dataframes
 # Resulting set is sorted by date and interval
 
 ```r
